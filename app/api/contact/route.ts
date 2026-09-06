@@ -1,6 +1,6 @@
 import { clean, isValidEmail, sendFormNotification } from "@/lib/mail";
 
-/** Early-access waitlist form on /products/ats. */
+/** Booking / contact form in the homepage CTA section. */
 export async function POST(request: Request) {
   let body: unknown;
   try {
@@ -9,10 +9,11 @@ export async function POST(request: Request) {
     return Response.json({ error: "invalid_body" }, { status: 400 });
   }
 
-  const { email, role, website } = (body ?? {}) as Record<string, unknown>;
+  const { firstName, lastName, email, phone, company, website } = (body ??
+    {}) as Record<string, unknown>;
 
-  // Honeypot: a real person never sees this field, so anything in it is a bot.
-  // Answer 200 so the bot has no signal that it was rejected.
+  // Honeypot. Named `website` rather than `company` because this form has a
+  // real company field.
   if (typeof website === "string" && website.trim() !== "") {
     return Response.json({ ok: true });
   }
@@ -21,16 +22,27 @@ export async function POST(request: Request) {
     return Response.json({ error: "invalid_email" }, { status: 400 });
   }
 
+  const first = clean(firstName, 100);
+  const last = clean(lastName, 100);
+  const phoneNumber = clean(phone, 50);
+
+  if (!first || !last || !phoneNumber) {
+    return Response.json({ error: "missing_fields" }, { status: 400 });
+  }
+
   const cleanEmail = email.trim();
+  const fullName = `${first} ${last}`.trim();
 
   const result = await sendFormNotification({
-    kind: "waitlist",
-    subject: `Staffly ATS+ early access - ${cleanEmail}`,
+    kind: "contact",
+    subject: `Staffly booking request - ${fullName}`,
     replyTo: cleanEmail,
-    heading: "New early-access request for Staffly ATS+",
+    heading: "New booking request from the Staffly site",
     rows: [
+      { label: "Name", value: fullName },
       { label: "Email", value: cleanEmail },
-      { label: "What they hire for", value: clean(role) },
+      { label: "Phone", value: phoneNumber },
+      { label: "Company", value: clean(company, 200) },
     ],
   });
 

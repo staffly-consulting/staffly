@@ -141,7 +141,10 @@
     "phone": "Phone",
     "companyOptional": "Company name (optional)",
     "submit": "Book now",
-    "emailSubject": "Booking request from {name}"
+    "submitting": "Sending...",
+    "successTitle": "Thanks, we've got it.",
+    "successBody": "We'll be in touch shortly to arrange a time.",
+    "errorBody": "That didn't send. Please try again, or email marketing@stafflyconsulting.com."
   },
   "footer": {
     "tagline": "Global HR & workforce management for distributed teams in 140+ countries.",

@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import LanguageSwitcher from "../_components/LanguageSwitcher";
 import AtsProductCard from "../_components/ProductCard";
+import ContactForm from "../_components/ContactForm";
 
 const WRAP = "mx-auto w-full max-w-[1200px] px-8";
 
@@ -73,61 +74,11 @@ const Tick = () => (
   <span className="inline-grid w-3.5 h-3.5 rounded-full bg-(--navy) place-items-center flex-none after:content-[''] after:w-1.5 after:h-[3px] after:border-l-[1.5px] after:border-b-[1.5px] after:border-white after:-rotate-45 after:-mt-0.5" />
 );
 
-type FieldProps = React.InputHTMLAttributes<HTMLInputElement> & { label: string };
-
-const Field = ({ label, ...rest }: FieldProps) => (
-  <label className="flex flex-col gap-1.5">
-    <span className={`text-[11px] font-medium uppercase tracking-[0.08em] text-white/70 ${FONT_MONO}`}>
-      {label}
-    </span>
-    <input
-      {...rest}
-      className="h-12 rounded-lg border border-white/20 bg-white/10 px-4 text-[14.5px] text-white outline-none transition-all placeholder:text-white/40 hover:border-white/35 focus:border-(--blue) focus:bg-white/15 focus:ring-4 focus:ring-(--blue)/25"
-    />
-  </label>
-);
-
-const CONTACT_EMAIL = "marketing@stafflyconsulting.com";
-
-type ContactForm = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  company: string;
-};
-
 export default function Home() {
   const t = useTranslations();
   const [scrolled, setScrolled] = useState(false);
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [quoteFading, setQuoteFading] = useState(false);
-  const [form, setForm] = useState<ContactForm>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    company: "",
-  });
-
-  const updateField =
-    (field: keyof ContactForm) => (e: React.ChangeEvent<HTMLInputElement>) =>
-      setForm((f) => ({ ...f, [field]: e.target.value }));
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const fullName = `${form.firstName} ${form.lastName}`.trim();
-    const subject = t("contact.emailSubject", { name: fullName });
-    const body = [
-      `${t("contact.firstName")}: ${form.firstName}`,
-      `${t("contact.lastName")}: ${form.lastName}`,
-      `${t("contact.email")}: ${form.email}`,
-      `${t("contact.phone")}: ${form.phone}`,
-      `${t("contact.companyOptional")}: ${form.company || "—"}`,
-    ].join("\n");
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  };
-
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handler);
@@ -523,23 +474,7 @@ export default function Home() {
             <span className={`${KICKER} !text-[#7FB0FF]`}>{t("ctaSection.kicker")}</span>
             <h2 className={`${H2} !text-white mb-[18px]`}>{t("ctaSection.title")}</h2>
             <p className="text-white/70 text-[17px] max-w-[520px] mx-auto m-0 mb-8">{t("ctaSection.desc")}</p>
-            <form onSubmit={handleSubmit} className="mx-auto mt-2 flex max-w-xl flex-col gap-4 text-left">
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <Field label={t("contact.firstName")} type="text" required autoComplete="given-name" value={form.firstName} onChange={updateField("firstName")} />
-                <Field label={t("contact.lastName")} type="text" required autoComplete="family-name" value={form.lastName} onChange={updateField("lastName")} />
-              </div>
-              <Field label={t("contact.email")} type="email" required autoComplete="email" value={form.email} onChange={updateField("email")} />
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <Field label={t("contact.phone")} type="tel" required autoComplete="tel" value={form.phone} onChange={updateField("phone")} />
-                <Field label={t("contact.companyOptional")} type="text" autoComplete="organization" value={form.company} onChange={updateField("company")} />
-              </div>
-              <button
-                type="submit"
-                className="mt-2 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-(--blue) px-6 text-[15px] font-medium text-white transition-all hover:bg-(--blue-600) hover:-translate-y-0.5 hover:shadow-[0_8px_22px_-10px_rgba(47,125,250,0.7)]"
-              >
-                {t("contact.submit")} <ArrowIcon size={16} />
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </section>
