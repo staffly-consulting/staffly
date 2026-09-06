@@ -57,12 +57,18 @@ export async function POST(request: Request) {
   const cleanRole =
     typeof role === "string" ? role.trim().slice(0, MAX_ROLE) : "";
 
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = process.env.RESEND_API_KEY?.trim();
   if (!apiKey) {
     // Misconfiguration, not a user error. Make it loud in the logs so a silently
-    // dropped lead is impossible to miss.
+    // dropped lead is impossible to miss, and say enough to diagnose it: which
+    // related variable NAMES the runtime can actually see (never their values).
+    const seen = Object.keys(process.env)
+      .filter((k) => /RESEND|WAITLIST/i.test(k))
+      .sort();
     console.error(
-      `[waitlist] RESEND_API_KEY is not set; lead NOT sent: ${cleanEmail} | role: ${cleanRole || "(none)"}`,
+      `[waitlist] RESEND_API_KEY missing at runtime; lead NOT sent: ${cleanEmail} | role: ${cleanRole || "(none)"} | ` +
+        `matching env names visible: ${seen.length ? seen.join(", ") : "(none)"} | ` +
+        `VERCEL_ENV=${process.env.VERCEL_ENV ?? "(unset)"}`,
     );
     return Response.json({ error: "not_configured" }, { status: 503 });
   }

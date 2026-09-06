@@ -248,7 +248,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-3.5">
             <LanguageSwitcher />
-            <a className={BTN.primary} href="#cta">
+            <a className={`${BTN.primary} max-[560px]:hidden`} href="#cta">
               {t("nav.startFree")} <ArrowIcon />
             </a>
           </div>
