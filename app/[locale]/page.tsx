@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import LanguageSwitcher from "../_components/LanguageSwitcher";
 import AtsProductCard from "../_components/ProductCard";
 import ContactForm from "../_components/ContactForm";
+import SiteFooter from "../_components/SiteFooter";
 
 const WRAP = "mx-auto w-full max-w-[1200px] px-8";
 
@@ -51,7 +52,7 @@ const BrandMark = () => (
 
 const Brand = () => (
   <a
-    href="#"
+    href="#nav"
     className={`group inline-flex items-center gap-2.5 ${FONT_DISPLAY} font-semibold text-[18px] -tracking-[0.018em] text-(--navy-900)`}
   >
     <BrandMark />
@@ -77,8 +78,6 @@ const Tick = () => (
 export default function Home() {
   const t = useTranslations();
   const [scrolled, setScrolled] = useState(false);
-  const [quoteIndex, setQuoteIndex] = useState(0);
-  const [quoteFading, setQuoteFading] = useState(false);
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handler);
@@ -100,17 +99,6 @@ export default function Home() {
     );
     document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setQuoteFading(true);
-      setTimeout(() => {
-        setQuoteIndex((i) => (i + 1) % 3);
-        setQuoteFading(false);
-      }, 220);
-    }, 6000);
-    return () => clearInterval(id);
   }, []);
 
   useEffect(() => {
@@ -160,26 +148,11 @@ export default function Home() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  const goToQuote = (i: number) => {
-    if (i === quoteIndex) return;
-    setQuoteFading(true);
-    setTimeout(() => {
-      setQuoteIndex(i);
-      setQuoteFading(false);
-    }, 220);
-  };
-
-  const quoteKey = (`q${quoteIndex + 1}`) as "q1" | "q2" | "q3";
-
   // Orbiter node base classes
   const NODE =
-    "absolute -translate-x-1/2 -translate-y-1/2 flex items-center gap-2.5 whitespace-nowrap rounded-[14px] border border-(--line) bg-white py-2.5 px-3.5 text-[12.5px] font-medium text-(--ink) shadow-[0_14px_30px_-18px_rgba(7,27,67,0.25)]";
+    "absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-[14px] border border-(--line) bg-white py-2.5 px-3.5 text-[12.5px] font-medium text-(--ink) shadow-[0_14px_30px_-18px_rgba(7,27,67,0.25)]";
   const NODE_ACCENT =
-    "absolute -translate-x-1/2 -translate-y-1/2 flex items-center gap-2.5 whitespace-nowrap rounded-[14px] border border-(--blue) bg-(--blue) py-2.5 px-3.5 text-[12.5px] font-medium text-white shadow-[0_14px_30px_-18px_rgba(7,27,67,0.25)]";
-  const AV =
-    `inline-grid w-[22px] h-[22px] place-items-center rounded-full bg-[linear-gradient(135deg,#2F7DFA,#0B2A63)] text-white text-[10px] font-semibold ${FONT_MONO}`;
-  const AV_ACCENT =
-    `inline-grid w-[22px] h-[22px] place-items-center rounded-full bg-white text-(--blue) text-[10px] font-semibold ${FONT_MONO}`;
+    "absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-[14px] border border-(--blue) bg-(--blue) py-2.5 px-3.5 text-[12.5px] font-medium text-white shadow-[0_14px_30px_-18px_rgba(7,27,67,0.25)]";
 
   return (
     <>
@@ -193,8 +166,8 @@ export default function Home() {
         <div className={`${WRAP} flex items-center justify-between transition-all duration-300 ${scrolled ? "h-[62px]" : "h-[72px]"}`}>
           <Brand />
           <div className="flex items-center gap-9 max-[980px]:hidden">
-            <a href="#features" className="text-(--ink-2) text-[14.5px] font-medium transition-colors hover:text-(--navy)">{t("nav.platform")}</a>
-            <a href="#customers" className="text-(--ink-2) text-[14.5px] font-medium transition-colors hover:text-(--navy)">{t("nav.customers")}</a>
+            <a href="#features" className="text-(--ink-2) text-[14.5px] font-medium transition-colors hover:text-(--navy)">{t("nav.services")}</a>
+            <a href="#how" className="text-(--ink-2) text-[14.5px] font-medium transition-colors hover:text-(--navy)">{t("nav.how")}</a>
             <Link href="/products/ats" className="text-(--ink-2) text-[14.5px] font-medium transition-colors hover:text-(--navy)">{t("nav.product")}</Link>
           </div>
           <div className="flex items-center gap-3.5">
@@ -222,14 +195,14 @@ export default function Home() {
               <a className={BTN.accent} href="#cta">
                 {t("hero.ctaPrimary")} <ArrowIcon />
               </a>
-              <a className={BTN.outline} href="#">
+              <a className={BTN.outline} href="#features">
                 {t("hero.ctaSecondary")}
               </a>
             </div>
             <div className="flex gap-7 items-center text-[13.5px] text-(--mute)">
-              <span className="inline-flex items-center gap-2"><Tick />{t("hero.trial")}</span>
-              <span className="inline-flex items-center gap-2"><Tick />{t("hero.noCard")}</span>
-              <span className="inline-flex items-center gap-2"><Tick />{t("hero.soc")}</span>
+              <span className="inline-flex items-center gap-2"><Tick />{t("hero.point1")}</span>
+              <span className="inline-flex items-center gap-2"><Tick />{t("hero.point2")}</span>
+              <span className="inline-flex items-center gap-2"><Tick />{t("hero.point3")}</span>
             </div>
           </div>
 
@@ -264,51 +237,20 @@ export default function Home() {
             </div>
 
             <div id="o1" className="absolute left-1/2 top-1/2 w-0 h-0 [transform-origin:0_0]">
-              <div className={NODE}>
-                <span className={AV}>ML</span>
-                <div>
-                  {t("orbiters.amara.name")}
-                  <div className="text-(--mute) text-[11px] font-normal">{t("orbiters.amara.role")}</div>
-                </div>
-              </div>
+              <div className={NODE}>{t("nodes.n1")}</div>
             </div>
             <div id="o2" className="absolute left-1/2 top-1/2 w-0 h-0 [transform-origin:0_0]">
-              <div className={NODE_ACCENT}>
-                <span className={AV_ACCENT}>AS</span>
-                <div>
-                  {t("orbiters.jonas.name")}
-                  <div className="text-white/75 text-[11px] font-normal">{t("orbiters.jonas.role")}</div>
-                </div>
-              </div>
+              <div className={NODE_ACCENT}>{t("nodes.n2")}</div>
             </div>
             <div id="o3" className="absolute left-1/2 top-1/2 w-0 h-0 [transform-origin:0_0]">
-              <div className={NODE}>
-                <span className={AV}>LN</span>
-                <div>
-                  {t("orbiters.sana.name")}
-                  <div className="text-(--mute) text-[11px] font-normal">{t("orbiters.sana.role")}</div>
-                </div>
-              </div>
+              <div className={NODE}>{t("nodes.n3")}</div>
             </div>
             <div id="o4" className="absolute left-1/2 top-1/2 w-0 h-0 [transform-origin:0_0]">
-              <div className={NODE}>
-                <span className={AV}>BS</span>
-                <div>
-                  {t("orbiters.mateo.name")}
-                  <div className="text-(--mute) text-[11px] font-normal">{t("orbiters.mateo.role")}</div>
-                </div>
-              </div>
+              <div className={NODE}>{t("nodes.n4")}</div>
             </div>
             <div id="o5" className="absolute left-1/2 top-1/2 w-0 h-0 [transform-origin:0_0]">
-              <div className={NODE}>
-                <span className={AV}>PS</span>
-                <div>
-                  {t("orbiters.lina.name")}
-                  <div className="text-(--mute) text-[11px] font-normal">{t("orbiters.lina.role")}</div>
-                </div>
-              </div>
+              <div className={NODE}>{t("nodes.n5")}</div>
             </div>
-
             <div id="sig1" className="absolute left-1/2 top-1/2 w-1.5 h-1.5 -ml-[3px] -mt-[3px] rounded-full bg-(--blue) shadow-[0_0_12px_var(--blue)] z-[2]" />
             <div id="sig2" className="absolute left-1/2 top-1/2 w-1.5 h-1.5 -ml-[3px] -mt-[3px] rounded-full bg-(--blue) shadow-[0_0_12px_var(--blue)] z-[2]" />
             <div id="sig3" className="absolute left-1/2 top-1/2 w-1.5 h-1.5 -ml-[3px] -mt-[3px] rounded-full bg-(--blue) shadow-[0_0_12px_var(--blue)] z-[2]" />
@@ -327,12 +269,12 @@ export default function Home() {
 
           <div className="grid grid-cols-3 gap-px bg-(--line) border border-(--line) rounded-[22px] overflow-hidden reveal max-[980px]:grid-cols-1">
             {[
-              { num: "payrollNum", title: "payrollTitle", desc: "payrollDesc", svg: <><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 10h18M8 4v4" /></> },
-              { num: "peopleNum", title: "peopleTitle", desc: "peopleDesc", svg: <><circle cx="12" cy="8" r="3" /><path d="M4 20c1.4-4 4.4-6 8-6s6.6 2 8 6" /></> },
-              { num: "analyticsNum", title: "analyticsTitle", desc: "analyticsDesc", svg: <><path d="M3 12l4-4 4 4 4-4 6 6" /><path d="M3 20h18" /></> },
-              { num: "complianceNum", title: "complianceTitle", desc: "complianceDesc", svg: <><path d="M12 3l9 4-9 4-9-4 9-4z" /><path d="M3 12l9 4 9-4M3 17l9 4 9-4" /></> },
-              { num: "timeNum", title: "timeTitle", desc: "timeDesc", svg: <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M8 3v4M16 3v4M3 10h18" /></> },
-              { num: "workflowsNum", title: "workflowsTitle", desc: "workflowsDesc", svg: <path d="M6 3v18M18 3v18M3 12h18" /> },
+              { num: "corporateNum", title: "corporateTitle", desc: "corporateDesc", svg: <><path d="M3 21h18" /><path d="M5 21V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v16" /><path d="M13 9h5a1 1 0 0 1 1 1v11" /><path d="M8 8h2M8 12h2M8 16h2M16 13h1M16 17h1" /></> },
+              { num: "boiNum", title: "boiTitle", desc: "boiDesc", svg: <><circle cx="12" cy="9" r="5" /><path d="M9 13.4 8 21l4-2 4 2-1-7.6" /></> },
+              { num: "immigrationNum", title: "immigrationTitle", desc: "immigrationDesc", svg: <><rect x="5" y="3" width="14" height="18" rx="2" /><circle cx="12" cy="9" r="2.5" /><path d="M8.5 15.5h7" /></> },
+              { num: "hrNum", title: "hrTitle", desc: "hrDesc", svg: <><circle cx="9" cy="8" r="3" /><path d="M2 20c1.2-3.4 3.7-5 7-5s5.8 1.6 7 5" /><path d="M16 5.2a3 3 0 0 1 0 5.6" /></> },
+              { num: "payrollNum", title: "payrollTitle", desc: "payrollDesc", svg: <><rect x="2" y="6" width="20" height="12" rx="2" /><circle cx="12" cy="12" r="2.5" /><path d="M6 10v4M18 10v4" /></> },
+              { num: "adminNum", title: "adminTitle", desc: "adminDesc", svg: <><rect x="6" y="4" width="12" height="17" rx="2" /><path d="M9 4V3h6v1" /><path d="M9.5 10h5M9.5 14h5" /></> },
             ].map((c) => (
               <div
                 key={c.num}
@@ -354,15 +296,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SPLIT */}
-      <section className="relative py-[120px]">
+      {/* HOW WE WORK */}
+      <section id="how" className="relative py-[120px] scroll-mt-[72px]">
         <div className={`${WRAP} grid grid-cols-2 gap-20 items-center max-[980px]:grid-cols-1`}>
           <div className="reveal">
-            <span className={KICKER}>{t("collab.kicker")}</span>
-            <h2 className={`${H2} mb-[22px]`}>{t("collab.title")}</h2>
-            <p className="text-(--ink-2) text-[17px] m-0 mb-7 max-w-[480px]">{t("collab.desc")}</p>
+            <span className={KICKER}>{t("how.kicker")}</span>
+            <h2 className={`${H2} mb-[22px]`}>{t("how.title")}</h2>
+            <p className="text-(--ink-2) text-[17px] m-0 mb-7 max-w-[480px]">{t("how.desc")}</p>
             <ul className="list-none p-0 m-0 mb-8 flex flex-col gap-3.5">
-              {[t("collab.bullet1"), t("collab.bullet2"), t("collab.bullet3")].map((b, i) => (
+              {[t("how.bullet1"), t("how.bullet2"), t("how.bullet3")].map((b, i) => (
                 <li key={i} className="flex gap-3.5 items-start text-[15px] text-(--ink)">
                   <span className="text-(--blue) flex-none mt-0.5">
                     <CheckIcon size={18} strokeWidth={2} />
@@ -371,47 +313,27 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <a href="#" className={BTN.primary}>
-              {t("collab.cta")} <ArrowIcon />
+            <a href="#cta" className={BTN.primary}>
+              {t("how.cta")} <ArrowIcon />
             </a>
           </div>
 
           <div className="reveal border border-(--line) rounded-[22px] bg-white overflow-hidden shadow-[0_40px_80px_-40px_rgba(11,42,99,0.25)]">
-            <div className="flex items-center gap-1.5 py-3 px-3.5 border-b border-(--line) bg-(--bg-soft)">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#D9DFEC]" />
-              <span className="w-2.5 h-2.5 rounded-full bg-[#D9DFEC]" />
-              <span className="w-2.5 h-2.5 rounded-full bg-[#D9DFEC]" />
-              <span className={`ml-3.5 ${FONT_MONO} text-[11px] text-(--mute) bg-white border border-(--line) rounded-md py-1 px-2.5`}>
-                app.staffly.com/overview
+            <div className="border-b border-(--line) bg-(--bg-soft) py-4 px-6">
+              <span className={`${FONT_MONO} text-[11px] uppercase tracking-[0.1em] text-(--mute)`}>
+                {t("how.panelTitle")}
               </span>
             </div>
-            <div className="p-[22px] grid grid-cols-2 gap-3.5">
-              <div className="border border-(--line) rounded-xl p-3.5">
-                <div className={`${FONT_MONO} text-[11px] text-(--mute) uppercase tracking-[0.08em]`}>
-                  {t("collab.mockupHeadcount")}
-                </div>
-                <div className={`${FONT_DISPLAY} text-[28px] font-semibold text-(--navy-900) -tracking-[0.02em] mt-1.5`}>1,284</div>
-                <div className="text-[11px] text-[#1E9D6B] mt-1">{t("collab.mockupHeadcountDelta")}</div>
-              </div>
-              <div className="border border-(--line) rounded-xl p-3.5">
-                <div className={`${FONT_MONO} text-[11px] text-(--mute) uppercase tracking-[0.08em]`}>
-                  {t("collab.mockupRunRate")}
-                </div>
-                <div className={`${FONT_DISPLAY} text-[28px] font-semibold text-(--navy-900) -tracking-[0.02em] mt-1.5`}>$12.4M</div>
-                <div className="text-[11px] text-[#1E9D6B] mt-1">{t("collab.mockupRunRateDelta")}</div>
-              </div>
-              <div className="col-span-full border border-(--line) rounded-xl p-3.5">
-                <div className={`${FONT_MONO} text-[11px] text-(--mute) uppercase tracking-[0.08em]`}>
-                  {t("collab.mockupNewHires")}
-                </div>
-                <div className="flex gap-1.5 items-end h-[70px] mt-3 [&>span]:flex-1 [&>span]:bg-(--blue) [&>span]:rounded-[3px] [&>span]:opacity-20 [&>span.mid]:opacity-60 [&>span.on]:opacity-100">
-                  <span /><span className="mid" /><span /><span className="on" />
-                  <span className="mid" /><span className="on" /><span className="on" />
-                  <span className="mid" /><span className="on" /><span />
-                  <span className="mid" /><span className="on" />
-                </div>
-              </div>
-            </div>
+            <ul className="list-none m-0 p-6 flex flex-col gap-4">
+              {(["p1", "p2", "p3", "p4", "p5", "p6"] as const).map((k) => (
+                <li key={k} className="flex gap-3 items-start text-[14.5px] text-(--ink)">
+                  <span className="text-(--blue) flex-none mt-0.5">
+                    <CheckIcon size={17} strokeWidth={2} />
+                  </span>
+                  {t(`how.${k}` as never)}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -433,40 +355,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIAL */}
-      <section id="customers" className="relative py-[120px] bg-(--bg-soft)">
-        <div className={`${WRAP} max-w-[860px] mx-auto text-center reveal`}>
-          <span className={KICKER}>{t("testimonials.kicker")}</span>
-          <p
-            className={`${FONT_DISPLAY} font-medium text-[clamp(26px,2.6vw,36px)] leading-[1.25] -tracking-[0.02em] text-(--navy-900) m-0 mb-8 transition-opacity duration-200`}
-            style={{ opacity: quoteFading ? 0 : 1 }}
-          >
-            {t(`testimonials.${quoteKey}Text`)}
-          </p>
-          <div className="inline-flex items-center gap-3.5">
-            <span className={`grid w-11 h-11 place-items-center rounded-full bg-[linear-gradient(135deg,#2F7DFA,#0B2A63)] text-white font-semibold ${FONT_MONO} text-[13px]`}>
-              {quoteIndex === 0 ? "EM" : quoteIndex === 1 ? "DK" : "SO"}
-            </span>
-            <div className="text-left">
-              <b className="block text-[14px] text-(--navy-900) font-semibold">{t(`testimonials.${quoteKey}Name`)}</b>
-              <span className="text-[13px] text-(--mute)">{t(`testimonials.${quoteKey}Role`)}</span>
-            </div>
-          </div>
-          <div className="flex gap-2 justify-center mt-9">
-            {[0, 1, 2].map((i) => (
-              <button
-                key={i}
-                aria-label={`Quote ${i + 1}`}
-                onClick={() => goToQuote(i)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === quoteIndex ? "w-[22px] bg-(--navy)" : "w-1.5 bg-(--line-2)"
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
       <section id="cta" className="relative py-[140px] text-center">
         <div className={WRAP}>
@@ -479,41 +367,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="py-16 pt-16 pb-10 border-t border-(--line)">
-        <div className={WRAP}>
-          <div className="grid grid-cols-[1.2fr_1fr_1fr_1fr] gap-10 max-[980px]:grid-cols-1">
-            <div>
-              <Brand />
-              <p className="text-(--mute) text-[13.5px] mt-3.5 max-w-[280px]">{t("footer.tagline")}</p>
-            </div>
-            {[
-              { heading: "product", links: ["productPayroll", "productPeople", "productCompliance", "productAnalytics"] },
-              { heading: "company", links: ["companyAbout", "companyCareers", "companyPress", "companyContact"] },
-              { heading: "resources", links: ["resourcesDocs", "resourcesChangelog", "resourcesStatus", "resourcesSecurity"] },
-            ].map((col) => (
-              <div key={col.heading}>
-                <h4 className={`${FONT_DISPLAY} text-[13px] font-semibold uppercase tracking-[0.1em] text-(--navy-900) m-0 mb-4`}>
-                  {t(`footer.${col.heading}` as never)}
-                </h4>
-                <ul className="list-none p-0 m-0 flex flex-col gap-2.5">
-                  {col.links.map((k) => (
-                    <li key={k}>
-                      <a href="#" className="text-[14px] text-(--ink-2) hover:text-(--navy)">
-                        {t(`footer.${k}` as never)}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="mt-14 pt-6 border-t border-(--line) flex justify-between items-center text-[13px] text-(--mute)">
-            <span>{t("footer.copyright")}</span>
-            <span>{t("footer.tagline2")}</span>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter homeLabel={t("nav.home")} />
+
     </>
   );
 }

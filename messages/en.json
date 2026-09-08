@@ -1,138 +1,81 @@
 {
+  "meta": {
+    "title": "Company Registration, BOI, Visas & Payroll in Thailand | Staffly",
+    "description": "Staffly sets up and runs your company in Thailand: company registration, Foreign Business License, BOI applications, work permits and visas, payroll, tax, accounting and HR."
+  },
   "nav": {
-    "platform": "Platform",
-    "customers": "Customers",
-    "pricing": "Pricing",
-    "integrations": "Integrations",
+    "home": "Staffly home",
+    "services": "Services",
+    "how": "How we work",
     "signin": "Sign in",
     "startFree": "Book now",
     "product": "Staffly ATS+"
   },
   "hero": {
-    "eyebrow": "Global workforce · HR · Payroll · Mobility",
-    "title": "Your workforce, <em>simplified</em> — across every border.",
-    "subtitle": "We help companies manage people, payroll, visas, and operations across borders — with a faster, smarter, and more human approach.",
+    "eyebrow": "Thailand · Company setup · BOI · Visas · Payroll · HR",
+    "title": "Set up and run your company <em>in Thailand</em>.",
+    "subtitle": "From DBD company registration and BOI applications through to work permits, payroll, tax and day-to-day HR. One local team for everything the Thai side of your business needs.",
     "ctaPrimary": "Book now",
-    "ctaSecondary": "Watch demo",
-    "trial": "14-day trial",
-    "noCard": "No card required",
-    "soc": "PDPA compliant"
+    "ctaSecondary": "See what we handle",
+    "point1": "Registered Thai company",
+    "point2": "We work across time zones",
+    "point3": "Company setup through to payroll"
   },
-  "orbiters": {
-    "amara": {
-      "name": "Mei L.",
-      "role": "Payroll · Singapore"
-    },
-    "jonas": {
-      "name": "Aira S.",
-      "role": "HR · Manila"
-    },
-    "sana": {
-      "name": "Linh N.",
-      "role": "Benefits · Hanoi"
-    },
-    "mateo": {
-      "name": "Budi S.",
-      "role": "Compliance · Jakarta"
-    },
-    "lina": {
-      "name": "Ploy S.",
-      "role": "Visa · Bangkok"
-    }
+  "nodes": {
+    "n1": "Company registration",
+    "n2": "BOI application",
+    "n3": "Work permit",
+    "n4": "Payroll & tax",
+    "n5": "HR & recruiting"
   },
   "features": {
-    "kicker": "The platform",
-    "title": "Everything your business needs — in one place.",
-    "lede": "From payroll and HR to visa and workforce support, we make operations easier to manage.",
-    "payrollNum": "01 / Payroll",
-    "payrollTitle": "Pay your team on time.",
-    "payrollDesc": "Salary processing, payroll support, and local compliance — handled smoothly.",
-    "peopleNum": "02 / HR Support",
-    "peopleTitle": "Better support for your employees.",
-    "peopleDesc": "Employee records, onboarding documents, contracts, approvals, and operational paperwork — and day-to-day people operations.",
-    "analyticsNum": "03 / Operational Coordination",
-    "analyticsTitle": "Less admin. More focus.",
-    "analyticsDesc": "Our team coordinates the behind-the-scenes operational work so your internal team can focus on growth.",
-    "complianceNum": "04 / Compliance Support",
-    "complianceTitle": "Stay aligned with local requirements.",
-    "complianceDesc": "We support businesses with employment-related documentation, reporting, and operational compliance processes.",
-    "timeNum": "05 / Visa & Work Permit",
-    "timeTitle": "Visa processing made easier.",
-    "timeDesc": "We prepare, collect, process, and coordinate documents for visa, work permit, and immigration-related requirements.",
-    "workflowsNum": "06 / Workflows",
-    "workflowsTitle": "Automate the busywork.",
-    "workflowsDesc": "Build onboarding, offboarding, and review flows without waiting on engineering. Ship in an afternoon."
+    "kicker": "Our services",
+    "title": "Everything it takes to set up and run in Thailand.",
+    "lede": "From incorporation to the filings that come round every month, handled by one team.",
+    "corporateNum": "01 / Corporate & legal compliance",
+    "corporateTitle": "Get the company registered.",
+    "corporateDesc": "Company registration via DBD standard and e-registration, changes to company details, directors and authorised signatories, capital investment and registered capital adjustments, and Foreign Business License (FBL) applications.",
+    "boiNum": "02 / BOI & investment promotion",
+    "boiTitle": "Apply for investment promotion.",
+    "boiDesc": "Investment promotion applications with the Board of Investment, and the semi-annual and annual project progress reporting that follows approval.",
+    "immigrationNum": "03 / Immigration & expatriate support",
+    "immigrationTitle": "Get your people into the country.",
+    "immigrationDesc": "Work permit applications and renewals, comprehensive visa services covering Non-B, LTR, Smart Visa and family visas, and 90-day immigration reporting.",
+    "hrNum": "04 / HR & people operations",
+    "hrTitle": "Hire, onboard and manage.",
+    "hrDesc": "End-to-end talent acquisition and recruiting, employee onboarding and offboarding, termination management and legal severance, labour law compliance, and both generalist and specialist HR support.",
+    "payrollNum": "05 / Payroll, tax & accounting",
+    "payrollTitle": "Run payroll and keep the books.",
+    "payrollDesc": "Monthly payroll processing and slips, Social Security Fund registration and submissions, VAT registration and deregistration, corporate and personal income tax, bookkeeping and financial statement preparation, and vehicle tax renewals.",
+    "adminNum": "06 / Administrative & executive support",
+    "adminTitle": "The day-to-day, covered.",
+    "adminDesc": "Virtual assistant and executive support, full-loop administrative operations, travel management across flights, hotels and transport, document preparation and local office support."
   },
-  "collab": {
-    "kicker": "Built for teams",
-    "title": "Work together, actually.",
-    "desc": "Shared views for HR, managers, and employees mean fewer handoffs and zero Slack archaeology. Everyone sees what they need — nothing more.",
-    "bullet1": "Role-based views for 7 default personas",
-    "bullet2": "Comments, approvals, and audit log on every record",
-    "bullet3": "Works in Slack, Teams, and Google Workspace",
-    "cta": "Explore collaboration",
-    "mockupHeadcount": "Headcount",
-    "mockupHeadcountDelta": "▲ 4.2% this qtr",
-    "mockupRunRate": "Run rate",
-    "mockupRunRateDelta": "▲ on plan",
-    "mockupNewHires": "New hires — last 12 months"
-  },
-  "pricing": {
-    "kicker": "Pricing",
-    "title": "One price per person. No surprise add-ons.",
-    "lede": "Start with what you need. Scale modules as you grow. Cancel anytime.",
-    "monthly": "Monthly",
-    "annual": "Annual · save 20%",
-    "perEmployee": "/ employee / month",
-    "popular": "Popular",
-    "starterTitle": "Starter",
-    "starterDesc": "For teams getting off spreadsheets.",
-    "starterF1": "People records & docs",
-    "starterF2": "Time off & calendars",
-    "starterF3": "Slack & Google integrations",
-    "starterCta": "Start Starter",
-    "growthTitle": "Growth",
-    "growthDesc": "For scaling, multi-country teams.",
-    "growthF1": "Everything in Starter",
-    "growthF2": "Global payroll · 140+ currencies",
-    "growthF3": "Compliance automation",
-    "growthF4": "Custom workflows & approvals",
-    "growthCta": "Start Growth",
-    "enterpriseTitle": "Enterprise",
-    "enterpriseDesc": "For global orgs with complex needs.",
-    "enterprisePrice": "Custom",
-    "enterpriseF1": "Everything in Growth",
-    "enterpriseF2": "SSO, SCIM, advanced audit",
-    "enterpriseF3": "Dedicated CSM & SLAs",
-    "enterpriseF4": "Private deployment option",
-    "enterpriseCta": "Talk to sales"
-  },
-  "integrations": {
-    "kicker": "Integrations",
-    "title": "Fits your stack. Quietly.",
-    "lede": "Staffly talks to the tools your team already uses. Two-way sync, scoped permissions, built-in audit."
+  "how": {
+    "kicker": "How we work",
+    "title": "One team instead of five vendors.",
+    "desc": "Companies coming into Thailand usually end up with a registration consultant, a visa agent, an accountant, a payroll provider and someone doing HR. Staffly covers all of it, so nothing falls between them.",
+    "bullet1": "One point of contact, from company registration through to monthly payroll",
+    "bullet2": "Deadlines tracked so permits, filings and BOI reports do not lapse",
+    "bullet3": "We work across time zones with your head office, and deal with Thai authorities in Thai",
+    "cta": "Book a call",
+    "panelTitle": "Handled by Staffly",
+    "p1": "DBD company registration and Foreign Business License",
+    "p2": "BOI application and project progress reporting",
+    "p3": "Work permits and Non-B, LTR and Smart Visas",
+    "p4": "Monthly payroll and Social Security Fund submissions",
+    "p5": "VAT registration, corporate and personal income tax",
+    "p6": "Bookkeeping and financial statement preparation"
   },
   "products": {
-    "kicker": "Products",
-    "title": "Meet Staffly ATS+.",
-    "lede": "Our AI screening agent for recruiters and agencies. It reads every application and scores each candidate against the criteria you set."
-  },
-  "testimonials": {
-    "kicker": "Customers",
-    "q1Text": "“We replaced four HR tools with Staffly in eight weeks. Our people ops team got their Fridays back.”",
-    "q1Name": "Elena Martín",
-    "q1Role": "VP People, Atlas Logistics · 1,200 employees",
-    "q2Text": "“Running payroll in twenty-three countries used to take a week. Now it takes an afternoon — and it’s right the first time.”",
-    "q2Name": "Devon Kaur",
-    "q2Role": "Head of People Ops, Northwind · 640 employees",
-    "q3Text": "“The onboarding flows alone paid for the product. New hires are productive on day one, not week three.”",
-    "q3Name": "Sam Okonkwo",
-    "q3Role": "COO, Fieldnote · 2,400 employees"
+    "kicker": "Software",
+    "title": "We build the software we use.",
+    "lede": "Recruiting is one of the services we run, so we built Staffly ATS+ to do the screening. It reads every application and scores each candidate against the criteria you set, and shows the reasoning behind every point."
   },
   "ctaSection": {
-    "kicker": "Try Staffly",
-    "title": "Fewer tabs. Better Fridays.",
-    "desc": "Spin up your workspace in under five minutes. Import your people, and we'll handle the rest."
+    "kicker": "Get in touch",
+    "title": "Tell us what you need in Thailand.",
+    "desc": "Send us a few details and we will come back to you about company setup, visas, payroll, or all of it."
   },
   "contact": {
     "firstName": "First name",
@@ -147,24 +90,13 @@
     "errorBody": "That didn't send. Please try again, or email marketing@stafflyconsulting.com."
   },
   "footer": {
-    "tagline": "Global HR & workforce management for distributed teams in 140+ countries.",
-    "product": "Product",
-    "productPayroll": "Payroll",
-    "productPeople": "People",
-    "productCompliance": "Compliance",
-    "productAnalytics": "Analytics",
-    "company": "Company",
-    "companyAbout": "About",
-    "companyCareers": "Careers",
-    "companyPress": "Press",
-    "companyContact": "Contact",
-    "resources": "Resources",
-    "resourcesDocs": "Docs",
-    "resourcesChangelog": "Changelog",
-    "resourcesStatus": "Status",
-    "resourcesSecurity": "Security",
-    "copyright": "© 2026 Staffly, Inc.",
-    "tagline2": "Crafted for distributed teams."
+    "tagline": "Company registration, BOI, visas, payroll, tax and HR for companies operating in Thailand.",
+    "linkServices": "Services",
+    "linkHow": "How we work",
+    "linkProduct": "Staffly ATS+",
+    "linkContact": "Contact",
+    "copyright": "© 2026 Staffly",
+    "tagline2": "Your Thailand operation, handled."
   },
   "localeSwitch": {
     "label": "Language",
